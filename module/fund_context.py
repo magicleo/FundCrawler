@@ -18,6 +18,7 @@ class FundContext:
         # 晨星的基金标识
         self.morningstar_fund_id: Optional[str] = None
         self.fund_type: Optional[str] = None
+        self.fund_create_time: Optional[str] = None
         self.fund_size: Optional[str] = None
         self.fund_company: Optional[str] = None
         self.fund_value: Optional[str] = None
@@ -26,10 +27,19 @@ class FundContext:
         self.management_fee_rate: Optional[str] = None
         self.custody_fee_rate: Optional[str] = None
         self.sales_service_fee_rate: Optional[str] = None
+        self.annualized_return_one_month: Optional[str] = None
+        self.annualized_return_three_month: Optional[str] = None
+        self.annualized_return_six_month: Optional[str] = None
+        self.annualized_return_this_year: Optional[str] = None
+        self.annualized_return_one_year: Optional[str] = None
+        self.annualized_return_two_year: Optional[str] = None
+        self.annualized_return_three_year: Optional[str] = None
         self.annualized_return_five_year: Optional[str] = None
         self.annualized_return_ten_year: Optional[str] = None
+        self.standard_deviation_three_years: Optional[str] = None
         self.standard_deviation_five_years: Optional[str] = None
         self.standard_deviation_ten_years: Optional[str] = None
+        self.sharp_rate_three_years: Optional[str] = None
         self.sharp_rate_five_years: Optional[str] = None
         self.sharp_rate_ten_years: Optional[str] = None
         self.alpha_to_ind: Optional[str] = None
@@ -45,6 +55,7 @@ class FundContext:
             FundAttrKey.FUND_SIMPLE_NAME: self.fund_name,
             FundAttrKey.MORNINGSTAR_FUND_ID: self.morningstar_fund_id,
             FundAttrKey.FUND_TYPE: self.fund_type,
+            FundAttrKey.FUND_CREATE_TIME: self.fund_create_time,
             FundAttrKey.FUND_SIZE: self.fund_size,
             FundAttrKey.FUND_COMPANY: self.fund_company,
             FundAttrKey.FUND_VALUE: self.fund_value,
@@ -53,10 +64,19 @@ class FundContext:
             FundAttrKey.MANAGEMENT_FEE_RATE: self.management_fee_rate,
             FundAttrKey.CUSTODY_FEE_RATE: self.custody_fee_rate,
             FundAttrKey.SALES_SERVICE_FEE_RATE: self.sales_service_fee_rate,
+            FundAttrKey.ANNUALIZED_RETURN_ONE_MONTH: self.annualized_return_one_month,
+            FundAttrKey.ANNUALIZED_RETURN_THREE_MONTH: self.annualized_return_three_month,
+            FundAttrKey.ANNUALIZED_RETURN_SIX_MONTH: self.annualized_return_six_month,
+            FundAttrKey.ANNUALIZED_RETURN_THIS_YEAR: self.annualized_return_this_year,
+            FundAttrKey.ANNUALIZED_RETURN_ONE_YEAR: self.annualized_return_one_year,
+            FundAttrKey.ANNUALIZED_RETURN_TWO_YEAR: self.annualized_return_two_year,
+            FundAttrKey.ANNUALIZED_RETURN_THREE_YEAR: self.annualized_return_three_year,
             FundAttrKey.ANNUALIZED_RETURN_FIVE_YEAR: self.annualized_return_five_year,
             FundAttrKey.ANNUALIZED_RETURN_TEN_YEAR: self.annualized_return_ten_year,
+            FundAttrKey.STANDARD_DEVIATION_THREE_YEARS: self.standard_deviation_three_years,
             FundAttrKey.STANDARD_DEVIATION_FIVE_YEARS: self.standard_deviation_five_years,
             FundAttrKey.STANDARD_DEVIATION_TEN_YEARS: self.standard_deviation_ten_years,
+            FundAttrKey.SHARP_RATE_THREE_YEARS: self.sharp_rate_three_years,
             FundAttrKey.SHARP_RATE_FIVE_YEARS: self.sharp_rate_five_years,
             FundAttrKey.SHARP_RATE_TEN_YEARS: self.sharp_rate_ten_years,
             FundAttrKey.ALPHA_TO_IND: self.alpha_to_ind,

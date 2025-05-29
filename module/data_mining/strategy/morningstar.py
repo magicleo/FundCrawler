@@ -19,6 +19,7 @@ class MorningstarStrategy(DataCleaningStrategy):
 
     def fill_result(self, fund_response: FundResponse, context: FundContext) -> None:
         response = fund_response.response
+        # print("MorningstarStrategy:",context)
         if response is None:
             return
 

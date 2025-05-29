@@ -4,7 +4,7 @@
 import logging
 import multiprocessing
 from concurrent.futures import Future, ThreadPoolExecutor
-from multiprocessing import Queue, Process, Event
+from multiprocessing import  Queue,Process, Event,Value
 from os import cpu_count
 from queue import Empty
 from sys import maxsize
@@ -63,6 +63,8 @@ class GetPageOnSubProcess(Process):
         self._request_queue: Queue[FundRequest] = Queue()
         self._result_queue: Queue[FundResponse] = Queue()
         self._exit_sign: Event = Event()
+        self._request_queue_size = Value('i', 0)  # 使用 Value 来共享数据
+        self._result_queue_size = Value('i', 0)  # 使用 Value 来共享数据
 
         # 请求队列最大的堆积任务数量
         self.max_request_size = 20
@@ -76,13 +78,17 @@ class GetPageOnSubProcess(Process):
         if self._exit_sign.is_set():
             raise Exception()
         self._request_queue.put(request)
-
+        with self._request_queue_size.get_lock():
+            self._request_queue_size.value += 1
     def get_result(self, block: bool = True) -> Optional[FundResponse]:
+        with self._result_queue_size.get_lock():
+            self._result_queue_size.value -= 1
+
         return self._result_queue.get(block=block, timeout=1)
 
     def if_downloader_busy(self) -> bool:
-        return self._request_queue.qsize() >= self.MAX_WORKER
-
+        with self._request_queue_size.get_lock():
+            return self._request_queue_size.value >= self.MAX_WORKER
     def close_downloader(self):
         self._exit_sign.set()
 
@@ -93,15 +99,19 @@ class GetPageOnSubProcess(Process):
         # By default, if a process is not the creator of the queue
         # then on exit it will attempt to join the queue’s background thread.
         # 说人话就是，主进程必须将队列清理干净，否则子进程不会结束
-        logging.info(f'队列情况{self._request_queue.qsize()} and {self._result_queue.qsize()}')
+        logging.info(f'队列情况{self._request_queue_size.value} and {self._result_queue_size.value}')
         while True:
             try:
                 self._request_queue.get(timeout=0.1)
+                with self._request_queue_size.get_lock():
+                    self._request_queue_size.value -= 1
             except Empty:
                 break
         self._request_queue.close()
         while True:
             try:
+                with self._result_queue_size.get_lock():
+                    self._result_queue_size.value -= 1
                 self._result_queue.get(timeout=0.1)
             except Empty:
                 break
@@ -118,9 +128,11 @@ class GetPageOnSubProcess(Process):
         """
         通过requests下载页面
         """
+        # print("start:", request.url)
         header = {"User-Agent": singleton_fake_ua.get_random_ua()}
         try:
             page = get(request.url, headers=header, timeout=2)
+            # print("page result:",page.status_code)
             if page.status_code != 200 or not page.text:
                 # 反爬虫策略之 给你返回空白的 200
                 raise AttributeError
@@ -136,12 +148,18 @@ class GetPageOnSubProcess(Process):
         if result.response is None and result.remain_retry_time > 0:
             # 失败重试
             self._request_queue.put(result.build_request())
+            with self._request_queue_size.get_lock():
+                self._request_queue_size.value += 1
+
             if result.domain in self._request_result_dict:
                 self._request_result_dict[result.domain].append(False)
             else:
                 self._request_result_dict[result.domain] = [False]
         else:
             self._result_queue.put(result)
+            with self._result_queue_size.get_lock():
+                self._result_queue_size.value += 1
+
             if result.domain in self._request_result_dict:
                 self._request_result_dict[result.domain].append(True)
             else:
@@ -188,6 +206,8 @@ class GetPageOnSubProcess(Process):
 
                 try:
                     request = self._request_queue.get(timeout=1)
+                    with self._request_queue_size.get_lock():
+                        self._request_queue_size.value -= 1
 
                     if request.domain not in executor_dict:
                         executor_dict[request.domain] = ThreadPoolExecutor(max_workers=self.MAX_WORKER)
@@ -201,5 +221,8 @@ class GetPageOnSubProcess(Process):
                         future.add_done_callback(self.future_callback)
                     else:
                         self._request_queue.put(request)
+                        with self._request_queue_size.get_lock():
+                            self._request_queue_size.value += 1
+
                 except Empty:
                     pass

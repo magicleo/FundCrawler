@@ -45,10 +45,12 @@ class RiskStrategy(DataCleaningStrategy):
         return_json_list = json.loads(response.text)
         for fund_risk in return_json_list['RiskAssessment']:
             if fund_risk['Name'] == '标准差（%）':
+                context.standard_deviation_three_years = fund_risk['Year3'] if fund_risk['Year3'] else NO_DATA
                 context.standard_deviation_five_years = fund_risk['Year5'] if fund_risk['Year5'] else NO_DATA
                 context.standard_deviation_ten_years = fund_risk['Year10'] if fund_risk['Year10'] else NO_DATA
                 continue
             if fund_risk['Name'] == '夏普比率':
+                context.sharp_rate_three_years = fund_risk['Year3'] if fund_risk['Year3'] else NO_DATA
                 context.sharp_rate_five_years = fund_risk['Year5'] if fund_risk['Year5'] else NO_DATA
                 context.sharp_rate_ten_years = fund_risk['Year10'] if fund_risk['Year10'] else NO_DATA
                 continue

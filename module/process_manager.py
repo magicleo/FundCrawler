@@ -103,7 +103,7 @@ class TaskManager:
             if first_meet_fund_code:
                 fund_context = self._fund_context_dict[first_meet_fund_code]
                 page_req_list = self._data_mining_module.summit_context(fund_context)
-
+                # print("page_req_list:",page_req_list)
                 if page_req_list:
                     # 数据挖掘模块提出新爬取请求
                     fund_wait_list = list()
