@@ -39,6 +39,37 @@ class FundAttrKey(StrEnum):
     ANNUALIZED_RETURN_FIVE_YEAR = "五年回报（年化）",
     ANNUALIZED_RETURN_TEN_YEAR = "十年回报（年化）",
 
+    RETURN_ONE_YEAR = '回报(一年)'
+    STANDARD_DEVIATION_ONE_YEAR = '标准差(一年)'
+    MAXIMUM_DRAWDOWN_ONE_YEAR = '最大回撤(一年)'
+    DOWNSIDE_RISK_ONE_YEAR = '下行风险(一年)'
+    MORNINGSTAR_RISK_ONE_YEAR = '晨星风险(一年)'
+    SHARPE_RATIO_ONE_YEAR = '夏普比例(一年)'
+    CALMAR_RATIO_ONE_YEAR = '卡玛比率(一年)'
+    SOTTINO_RATIO_ONE_YEAR= '索提诺比率(一年)'
+    ALPHA_TO_IND_ONE_YEAR = '阿尔法系数(一年)',
+    BETA_TO_IND_ONE_YEAR = '贝塔系数(一年)',
+    R_SQUARED_TO_IND_ONE_YEAR = 'R平方(一年)',
+    MONTHLY_WINNING_RATE_ONE_YEAR = '月度胜率(一年)'
+    GROWTH_CAPTURE_RATE_ONE_YEAR = '涨势捕获率(一年)'
+    BEARISH_CAPTURE_RATE_ONE_YEAR = '跌势捕获率(一年)'
+
+    RETURN_THREE_YEAR = '回报(三年)'
+    STANDARD_DEVIATION_THREE_YEAR = '标准差(三年)'
+    MAXIMUM_DRAWDOWN_THREE_YEAR = '最大回撤(三年)'
+    DOWNSIDE_RISK_THREE_YEAR = '下行风险(三年)'
+    MORNINGSTAR_RISK_THREE_YEAR = '晨星风险(三年)'
+    SHARPE_RATIO_THREE_YEAR = '夏普比例(三年)'
+    CALMAR_RATIO_THREE_YEAR = '卡玛比率(三年)'
+    SOTTINO_RATIO_THREE_YEAR= '索提诺比率(三年)'
+    ALPHA_TO_IND_THREE_YEAR = '阿尔法系数(三年)',
+    BETA_TO_IND_THREE_YEAR = '贝塔系数(三年)',
+    R_SQUARED_TO_IND_THREE_YEAR = 'R平方(三年)',
+    MONTHLY_WINNING_RATE_THREE_YEAR = '月度胜率(三年)'
+    GROWTH_CAPTURE_RATE_THREE_YEAR = '涨势捕获率(三年)'
+    BEARISH_CAPTURE_RATE_THREE_YEAR = '跌势捕获率(三年)'
+
+
     STANDARD_DEVIATION_THREE_YEARS = '标准差(三年%)',
     STANDARD_DEVIATION_FIVE_YEARS = '标准差(五年%)',
     STANDARD_DEVIATION_TEN_YEARS = '标准差(十年%)',
@@ -66,6 +97,9 @@ class PageType(Enum):
     # 基金风险 https://www.morningstar.cn/handler/quicktake.ashx?command=rating&fcid=0P00019IIB
     RISK = auto()
 
+    # 风险与回报https://www.morningstar.cn/#/fund/010430
+    # https://www.morningstar.cn/cn-api/fund/risk-return-table?csdcc=010430&period=&flag=
+    RISKRETURN = auto()
 
 # 最终爬取结果文件的占位，用于区分是真的木有数据，还是爬取可能失败/遗漏
 NO_DATA = 'NO_DATA'

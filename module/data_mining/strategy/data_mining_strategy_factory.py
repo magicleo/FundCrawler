@@ -8,7 +8,9 @@ from module.data_mining.strategy.manager import ManagerStrategy
 from module.data_mining.strategy.morningstar import MorningstarStrategy
 from module.data_mining.strategy.overview import OverviewStrategy
 from module.data_mining.strategy.risk import RiskStrategy
+from module.data_mining.strategy.riskReturn import   RiskReturnStrategy
 from utils.constants import PageType
+
 
 
 class DataCleaningStrategyFactory:
@@ -22,6 +24,7 @@ class DataCleaningStrategyFactory:
         PageType.MORNINGSTAR: MorningstarStrategy(),
         PageType.RETURN: ReturnStrategy(),
         PageType.RISK: RiskStrategy(),
+        PageType.RISKRETURN:RiskReturnStrategy(),
     }
 
     @classmethod

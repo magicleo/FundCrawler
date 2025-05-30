@@ -43,6 +43,8 @@ class RiskStrategy(DataCleaningStrategy):
             context.r_squared_to_ind = NO_DATA
 
         return_json_list = json.loads(response.text)
+        if "RiskAssessment" not in return_json_list or not return_json_list['RiskAssessment']:
+            return
         for fund_risk in return_json_list['RiskAssessment']:
             if fund_risk['Name'] == '标准差（%）':
                 context.standard_deviation_three_years = fund_risk['Year3'] if fund_risk['Year3'] else NO_DATA

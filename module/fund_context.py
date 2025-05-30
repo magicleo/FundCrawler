@@ -36,6 +36,36 @@ class FundContext:
         self.annualized_return_three_year: Optional[str] = None
         self.annualized_return_five_year: Optional[str] = None
         self.annualized_return_ten_year: Optional[str] = None
+        self.return_one_year: Optional[str] = None
+        self.standard_deviation_one_year: Optional[str] = None
+        self.maximum_drawdown_one_year: Optional[str] = None
+        self.downside_risk_one_year: Optional[str] = None
+        self.morningstar_risk_one_year: Optional[str] = None
+        self.sharp_ratio_one_year: Optional[str] = None
+        self.calmar_ratio_one_year: Optional[str] = None
+        self.sottino_ratio_one_year: Optional[str] = None
+        self.alpha_to_ind_one_year: Optional[str] = None
+        self.beta_to_ind_one_year: Optional[str] = None
+        self.r_squared_to_ind_one_year: Optional[str] = None
+        self.monthly_winning_rate_one_year: Optional[str] = None
+        self.growth_capture_rate_one_year: Optional[str] = None
+        self.bearish_capture_rate_one_year: Optional[str] = None
+
+        self.return_three_year: Optional[str] = None
+        self.standard_deviation_three_year: Optional[str] = None
+        self.maximum_drawdown_three_year: Optional[str] = None
+        self.downside_risk_three_year: Optional[str] = None
+        self.morningstar_risk_three_year: Optional[str] = None
+        self.sharp_ratio_three_year: Optional[str] = None
+        self.calmar_ratio_three_year: Optional[str] = None
+        self.sottino_ratio_three_year: Optional[str] = None
+        self.alpha_to_ind_three_year: Optional[str] = None
+        self.beta_to_ind_three_year: Optional[str] = None
+        self.r_squared_to_ind_three_year: Optional[str] = None
+        self.monthly_winning_rate_three_year: Optional[str] = None
+        self.growth_capture_rate_three_year: Optional[str] = None
+        self.bearish_capture_rate_three_year: Optional[str] = None
+
         self.standard_deviation_three_years: Optional[str] = None
         self.standard_deviation_five_years: Optional[str] = None
         self.standard_deviation_ten_years: Optional[str] = None
@@ -73,6 +103,39 @@ class FundContext:
             FundAttrKey.ANNUALIZED_RETURN_THREE_YEAR: self.annualized_return_three_year,
             FundAttrKey.ANNUALIZED_RETURN_FIVE_YEAR: self.annualized_return_five_year,
             FundAttrKey.ANNUALIZED_RETURN_TEN_YEAR: self.annualized_return_ten_year,
+
+            FundAttrKey.RETURN_ONE_YEAR: self.return_one_year,
+            FundAttrKey.STANDARD_DEVIATION_ONE_YEAR: self.standard_deviation_one_year,
+            FundAttrKey.MAXIMUM_DRAWDOWN_ONE_YEAR: self.maximum_drawdown_one_year,
+            FundAttrKey.DOWNSIDE_RISK_ONE_YEAR: self.downside_risk_one_year,
+            FundAttrKey.MORNINGSTAR_RISK_ONE_YEAR: self.morningstar_risk_one_year,
+            FundAttrKey.SHARPE_RATIO_ONE_YEAR: self.sharp_ratio_one_year,
+
+            FundAttrKey.CALMAR_RATIO_ONE_YEAR: self.calmar_ratio_one_year,
+            FundAttrKey.SOTTINO_RATIO_ONE_YEAR: self.sottino_ratio_one_year,
+            FundAttrKey.ALPHA_TO_IND_ONE_YEAR: self.alpha_to_ind_one_year,
+            FundAttrKey.BETA_TO_IND_ONE_YEAR: self.beta_to_ind_one_year,
+            FundAttrKey.R_SQUARED_TO_IND_ONE_YEAR: self.r_squared_to_ind_one_year,
+
+            FundAttrKey.MONTHLY_WINNING_RATE_ONE_YEAR: self.monthly_winning_rate_one_year,
+            FundAttrKey.GROWTH_CAPTURE_RATE_ONE_YEAR: self.growth_capture_rate_one_year,
+            FundAttrKey.BEARISH_CAPTURE_RATE_ONE_YEAR: self.bearish_capture_rate_one_year,
+
+            FundAttrKey.RETURN_THREE_YEAR: self.return_three_year,
+            FundAttrKey.STANDARD_DEVIATION_THREE_YEAR: self.standard_deviation_three_year,
+            FundAttrKey.MAXIMUM_DRAWDOWN_THREE_YEAR: self.maximum_drawdown_three_year,
+            FundAttrKey.DOWNSIDE_RISK_THREE_YEAR: self.downside_risk_three_year,
+            FundAttrKey.MORNINGSTAR_RISK_THREE_YEAR: self.morningstar_risk_three_year,
+            FundAttrKey.SHARPE_RATIO_THREE_YEAR: self.sharp_ratio_three_year,
+            FundAttrKey.CALMAR_RATIO_THREE_YEAR: self.calmar_ratio_three_year,
+            FundAttrKey.SOTTINO_RATIO_THREE_YEAR: self.sottino_ratio_three_year,
+            FundAttrKey.ALPHA_TO_IND_THREE_YEAR: self.alpha_to_ind_three_year,
+            FundAttrKey.BETA_TO_IND_THREE_YEAR: self.beta_to_ind_three_year,
+            FundAttrKey.R_SQUARED_TO_IND_THREE_YEAR: self.r_squared_to_ind_three_year,
+            FundAttrKey.MONTHLY_WINNING_RATE_THREE_YEAR: self.monthly_winning_rate_three_year,
+            FundAttrKey.GROWTH_CAPTURE_RATE_THREE_YEAR: self.growth_capture_rate_three_year,
+            FundAttrKey.BEARISH_CAPTURE_RATE_THREE_YEAR: self.bearish_capture_rate_three_year,
+
             FundAttrKey.STANDARD_DEVIATION_THREE_YEARS: self.standard_deviation_three_years,
             FundAttrKey.STANDARD_DEVIATION_FIVE_YEARS: self.standard_deviation_five_years,
             FundAttrKey.STANDARD_DEVIATION_TEN_YEARS: self.standard_deviation_ten_years,
